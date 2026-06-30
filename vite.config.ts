@@ -3,6 +3,7 @@ import path from "node:path"; // Импортируем модуль 'path' дл
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/dura-at-home/",
   build: {
     outDir: "docs"
   },
