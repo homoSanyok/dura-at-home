@@ -63,9 +63,9 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         width: 40,
                         height: 64
                     })) {
-                        if (UP_FRAMES.includes(yennefer.currentFrame)) return;
+                        if (UP_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoUp(yennefer);
-                        return;
+                        break;
                     }
 
                     yennefer.x += xCompensation;
@@ -81,9 +81,9 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         width: 40,
                         height: 64
                     })) {
-                        if (DOWN_FRAMES.includes(yennefer.currentFrame)) return;
+                        if (DOWN_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoDown(yennefer)
-                        return;
+                        break;
                     }
 
                     yennefer.y += ticker.deltaTime * MOVE_ALPHA;
@@ -98,7 +98,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         width: 80,
                         height: 64
                     })) {
-                        if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) return;
+                        if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x - ticker.deltaTime * MOVE_ALPHA - 40,
@@ -107,7 +107,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                             height: 64
                         })) {
                             gotoLeft(yennefer);
-                            return;
+                            break;
                         }
 
                         yennefer.x -= 40;
@@ -125,7 +125,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         width: 80,
                         height: 64
                     })) {
-                        if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) return;
+                        if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x + ticker.deltaTime * MOVE_ALPHA - 40,
@@ -134,7 +134,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                             height: 64
                         })) {
                             gotoRight(yennefer);
-                            return;
+                            break;
                         }
 
                         yennefer.x -= 40;
