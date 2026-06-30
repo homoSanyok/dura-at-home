@@ -36,7 +36,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
         ]);
         resolve(yennefer);
 
-        yennefer.gotoAndStop(5);
+        yennefer.gotoAndStop(LEFT_FRAMES[1]);
         yennefer.x = 9 * 32;
         yennefer.y = 12 * 32;
 
@@ -51,7 +51,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                     lastPushedKey = key;
                 }
             }
-            if (!keys[lastPushedKey]?.pushed) return;
+            if (!keys[lastPushedKey]?.pushed) lastPushedKey = undefined;
 
             switch (lastPushedKey) {
                 case "w": {
@@ -60,8 +60,8 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x + xCompensation,
                         y: yennefer.y - ticker.deltaTime * MOVE_ALPHA,
-                        width: 40,
-                        height: 64
+                        width: yennefer.width,
+                        height: yennefer.height
                     })) {
                         if (UP_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoUp(yennefer);
@@ -78,8 +78,8 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x,
                         y: yennefer.y + ticker.deltaTime * MOVE_ALPHA,
-                        width: 40,
-                        height: 64
+                        width: yennefer.width,
+                        height: yennefer.height
                     })) {
                         if (DOWN_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoDown(yennefer)
@@ -95,16 +95,16 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x - ticker.deltaTime * MOVE_ALPHA,
                         y: yennefer.y,
-                        width: 80,
-                        height: 64
+                        width: yennefer.width,
+                        height: yennefer.height
                     })) {
                         if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x - ticker.deltaTime * MOVE_ALPHA - 40,
                             y: yennefer.y,
-                            width: 80,
-                            height: 64
+                            width: yennefer.width,
+                            height: yennefer.height
                         })) {
                             gotoLeft(yennefer);
                             break;
@@ -122,16 +122,16 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x + ticker.deltaTime * MOVE_ALPHA,
                         y: yennefer.y,
-                        width: 80,
-                        height: 64
+                        width: yennefer.width,
+                        height: yennefer.height
                     })) {
                         if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x + ticker.deltaTime * MOVE_ALPHA - 40,
                             y: yennefer.y,
-                            width: 80,
-                            height: 64
+                            width: yennefer.width,
+                            height: yennefer.height
                         })) {
                             gotoRight(yennefer);
                             break;
@@ -196,9 +196,9 @@ function gotoStop(yennefer: AnimatedSprite) {
     if (frameTimer > FRAME_DURATION) {
         frameTimer = 0;
 
-        if (yennefer.currentFrame <= 3) yennefer.gotoAndStop(RIGHT_FRAMES[0]);
-        else if (yennefer.currentFrame >= 4 && yennefer.currentFrame <= 7) yennefer.gotoAndStop(LEFT_FRAMES[3]);
-        else if (yennefer.currentFrame >= 8 && yennefer.currentFrame <= 11) yennefer.gotoAndStop(DOWN_FRAMES[0]);
-        if (yennefer.currentFrame >= 12) yennefer.gotoAndStop(UP_FRAMES[0]);
+        if (RIGHT_FRAMES.includes(yennefer.currentFrame)) yennefer.gotoAndStop(RIGHT_FRAMES[0]);
+        else if (LEFT_FRAMES.includes(yennefer.currentFrame)) yennefer.gotoAndStop(LEFT_FRAMES[3]);
+        else if (DOWN_FRAMES.includes(yennefer.currentFrame)) yennefer.gotoAndStop(DOWN_FRAMES[0]);
+        else if (UP_FRAMES.includes(yennefer.currentFrame)) yennefer.gotoAndStop(UP_FRAMES[0]);
     }
 }

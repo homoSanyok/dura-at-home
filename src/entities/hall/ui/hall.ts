@@ -3,12 +3,15 @@ import { fitToScreen } from "@shared/lib";
 import { yennefer as loadYennefer } from "./yennefer";
 import { loadLayer } from "@app/lib";
 import { KeysT } from "@app/model";
+import { carpet as loadCarpet } from "./carpet";
 
 const HALL_PATH_PREFIX = "assets/hall";
 const TILESET_PATH = HALL_PATH_PREFIX + "/hall.tileset.png";
 
 export async function hall(keys: KeysT, ticker: Ticker) {
     const container = new Container();
+
+    const yennefer = await loadYennefer(keys, ticker);
 
     const [
         floor,
@@ -26,10 +29,9 @@ export async function hall(keys: KeysT, ticker: Ticker) {
         top,
         compod,
         bathroomDoorjamb,
-        yennefer
     ] = await Promise.all([
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_пол.csv`, tilesetPath: TILESET_PATH }),
-        loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_коврик.csv`, tilesetPath: TILESET_PATH }),
+        loadCarpet(yennefer, keys, ticker),
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_стены.csv`, tilesetPath: TILESET_PATH }),
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_вход кухня.csv`, tilesetPath: TILESET_PATH }),
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_входы зал ванна.csv`, tilesetPath: TILESET_PATH }),
@@ -43,7 +45,6 @@ export async function hall(keys: KeysT, ticker: Ticker) {
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_верхушка.csv`, tilesetPath: TILESET_PATH }),
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_комрод.csv`, tilesetPath: TILESET_PATH }),
         loadLayer({ csvPath: `${HALL_PATH_PREFIX}/hall_косяк_у_ванной.csv`, tilesetPath: TILESET_PATH }),
-        loadYennefer(keys, ticker)
     ]);
 
     container.addChild(floor);           // пол (самый нижний)

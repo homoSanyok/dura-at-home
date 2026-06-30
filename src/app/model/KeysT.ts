@@ -1,13 +1,8 @@
-export type KeyName =
-    | "ArrowUp" | "ArrowDown" | "ArrowLeft" | "ArrowRight"
-    | "w" | "a" | "s" | "d"
-    | "Space" | "Shift" | "Control" | "Alt"
-    | "Enter" | "Escape"
-    | "Tab";
+export type KeyName = 'w' | 'a' | 's' | 'd' | 'space' | 'shift' | 'control' | 'enter' | 'escape' | string;
 
-export type KeysT = {
-    [key: string]: {
-        pushed: boolean;
-        timestamp: number;
-    }
-};
+interface KeyState {
+    pushed: boolean;
+    timestamp: number;
+}
+
+export type KeysT = Record<KeyName, KeyState>;
