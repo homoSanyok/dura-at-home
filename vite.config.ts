@@ -1,8 +1,11 @@
 import { defineConfig } from "vite";
-import path from "path"; // Импортируем модуль 'path' для работы с путями
+import path from "node:path"; // Импортируем модуль 'path' для работы с путями
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    outDir: "docs"
+  },
   server: {
     port: 8080,
     open: true,
