@@ -31,8 +31,8 @@ let frameTimer = 0;
 export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
     return new Promise(async (resolve) => {
         const yennefer = await loadCharacter([
-            { frameWidth: 80, frameHeight: 64, cols: 4, rows: 2, file: "/tiled/yennefer/walk-horizontal.png" },
-            { frameWidth: 40, frameHeight: 64, cols: 4, rows: 2, file: "/tiled/yennefer/walk-vertical.png" },
+            { frameWidth: 80, frameHeight: 64, cols: 4, rows: 2, file: "assets/yennefer/walk-horizontal.png" },
+            { frameWidth: 40, frameHeight: 64, cols: 4, rows: 2, file: "assets/yennefer/walk-vertical.png" },
         ]);
         resolve(yennefer);
 

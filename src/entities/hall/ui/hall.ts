@@ -4,7 +4,7 @@ import { yennefer as loadYennefer } from "./yennefer";
 import { loadLayer } from "@app/lib";
 import { KeysT } from "@app/model";
 
-const HALL_PATH_PREFIX = "/tiled/hall/v2";
+const HALL_PATH_PREFIX = "assets/hall";
 const TILESET_PATH = HALL_PATH_PREFIX + "/hall.tileset.png";
 
 export async function hall(keys: KeysT, ticker: Ticker) {

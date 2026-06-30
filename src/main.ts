@@ -33,7 +33,7 @@ extensions.add({
   });
   document.body.appendChild(app.canvas);
 
-  const background = await loadBackground({ width: window.innerWidth, height: window.innerHeight, file: "/tiled/hall/v2/hall.background.png" });
+  const background = await loadBackground({ width: window.innerWidth, height: window.innerHeight, file: "assets/hall/hall.background.png" });
   const hall = await loadHall(keys, app.ticker);
 
   app.stage.addChild(background);
