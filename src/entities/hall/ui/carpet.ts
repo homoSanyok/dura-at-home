@@ -7,10 +7,8 @@ export async function carpet(yennefer: AnimatedSprite, keys: KeysT, appTicker: T
         const carpet = await loadLayer({ csvPath: "assets/hall/hall_коврик.csv", tilesetPath: "assets/hall/hall.tileset.png" });
         resolve(carpet);
 
-        console.log(yennefer.x, yennefer.y);
-
         let carpetCrossed = false;
-        appTicker.add(ticker => {
+        appTicker.add(() => {
             if (rectsIntersectOrContain(yennefer, carpet) && !carpetCrossed) {
                 shakeContainer(carpet, .5, 250, appTicker);
                 carpetCrossed = true;
@@ -19,6 +17,8 @@ export async function carpet(yennefer: AnimatedSprite, keys: KeysT, appTicker: T
             if (!rectsIntersectOrContain(yennefer, carpet) && carpetCrossed) {
                 carpetCrossed = false;
             }
+
+            if (keys.e.pushed) { }
         });
     });
 }
