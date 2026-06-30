@@ -47,7 +47,7 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
 
             let lastPushedKey: KeyName | undefined = "w";
             for (const key of (["w", "a", "s", "d"] as KeyName[])) {
-                if (keys[key]?.pushed && (keys[key]?.timestamp > keys[lastPushedKey]?.timestamp)) {
+                if (keys[key]?.pushed && ((keys[key]?.timestamp ?? 0) > (keys[lastPushedKey]?.timestamp ?? 0))) {
                     lastPushedKey = key;
                 }
             }

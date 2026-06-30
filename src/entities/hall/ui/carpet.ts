@@ -18,7 +18,7 @@ export async function carpet(yennefer: AnimatedSprite, keys: KeysT, appTicker: T
                 carpetCrossed = false;
             }
 
-            if (keys.e.pushed) { }
+            if (keys.e?.pushed) { }
         });
     });
 }
