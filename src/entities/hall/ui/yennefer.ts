@@ -60,8 +60,8 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x + xCompensation,
                         y: yennefer.y - ticker.deltaTime * MOVE_ALPHA,
-                        width: yennefer.width,
-                        height: yennefer.height
+                        width: 40,
+                        height: 64
                     })) {
                         if (UP_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoUp(yennefer);
@@ -74,18 +74,20 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                     break;
                 }
                 case "s": {
+                    const xCompensation = RIGHT_FRAMES.includes(yennefer.currentFrame) ? 40 : 0;
                     if (!isInPoligin({
                         yennefer: yennefer,
-                        x: yennefer.x,
+                        x: yennefer.x + xCompensation,
                         y: yennefer.y + ticker.deltaTime * MOVE_ALPHA,
-                        width: yennefer.width,
-                        height: yennefer.height
+                        width: 40,
+                        height: 64
                     })) {
                         if (DOWN_FRAMES.includes(yennefer.currentFrame)) break;
                         gotoDown(yennefer)
                         break;
                     }
 
+                    yennefer.x += xCompensation;
                     yennefer.y += ticker.deltaTime * MOVE_ALPHA;
                     gotoDown(yennefer);
                     break;
@@ -95,16 +97,16 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x - ticker.deltaTime * MOVE_ALPHA,
                         y: yennefer.y,
-                        width: yennefer.width,
-                        height: yennefer.height
+                        width: 80,
+                        height: 64
                     })) {
                         if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x - ticker.deltaTime * MOVE_ALPHA - 40,
                             y: yennefer.y,
-                            width: yennefer.width,
-                            height: yennefer.height
+                            width: 80,
+                            height: 64
                         })) {
                             gotoLeft(yennefer);
                             break;
@@ -122,16 +124,16 @@ export function yennefer(keys: KeysT, ticker: Ticker): Promise<AnimatedSprite> {
                         yennefer: yennefer,
                         x: yennefer.x + ticker.deltaTime * MOVE_ALPHA,
                         y: yennefer.y,
-                        width: yennefer.width,
-                        height: yennefer.height
+                        width: 80,
+                        height: 64
                     })) {
                         if (LEFT_FRAMES.includes(yennefer.currentFrame) || RIGHT_FRAMES.includes(yennefer.currentFrame)) break;
                         if (!isInPoligin({
                             yennefer: yennefer,
                             x: yennefer.x + ticker.deltaTime * MOVE_ALPHA - 40,
                             y: yennefer.y,
-                            width: yennefer.width,
-                            height: yennefer.height
+                            width: 80,
+                            height: 64
                         })) {
                             gotoRight(yennefer);
                             break;

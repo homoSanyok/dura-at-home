@@ -66,5 +66,7 @@ export async function hall(keys: KeysT, ticker: Ticker) {
 
     fitToScreen(container);
 
+    console.log(cabinet.x, cabinet.y);
+
     return container;
 }

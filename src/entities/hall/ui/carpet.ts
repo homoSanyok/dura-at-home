@@ -9,6 +9,7 @@ export async function carpet(yennefer: AnimatedSprite, keys: KeysT, appTicker: T
 
         let carpetCrossed = false;
         appTicker.add(() => {
+            // console.log(yennefer.x, yennefer.y, carpet.x, carpet.y);
             if (rectsIntersectOrContain(yennefer, carpet) && !carpetCrossed) {
                 shakeContainer(carpet, .5, 250, appTicker);
                 carpetCrossed = true;
